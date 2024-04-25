@@ -1,5 +1,5 @@
-package edu.iu.habahram.ducksservice.repository;
 import edu.iu.habahram.ducksservice.model.Customer;
+import edu.iu.habahram.ducksservice.repository.CustomerRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +15,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component
+
 public class CustomerFileRepository {
     private static final Logger LOG =
-            LoggerFactory.getLogger(CustomerFileRepository.class);
+            LoggerFactory.getLogger(CustomerRepository.class);
     public CustomerFileRepository() {
         File file = new File(DATABASE_NAME);
         file.getParentFile().mkdirs();
@@ -50,7 +50,7 @@ public class CustomerFileRepository {
         String passwordEncoded = bc.encode(customer.getPassword());
         String data = customer.getUsername() + ","
                 + passwordEncoded
-               + "," + customer.getEmail();
+                + "," + customer.getEmail();
         appendToFile(path, data + NEW_LINE);
     }
 
